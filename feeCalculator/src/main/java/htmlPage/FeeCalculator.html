@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script>
+		function populateNationality(s1, s2) {
+			var s1 = document.getElementById(s1);
+			var s2 = document.getElementById(s2);
+			s2.innerHTML = "";
+			if (s1.value == "Exam Fee") {
+				var optionArray = ["|", "INDIAN|INDIAN", "FOREIGN|FOREIGN", "NRI|NRI", "SAARC|SAARC"];
+			} else if (s1.value == "Application Fee") {
+				var optionArray = ["|", "INDIAN|INDIAN", "FOREIGN|FOREIGN"];
+			}
+			for (var option in optionArray) {
+				var pair = optionArray[option].split("|");
+				var newOption = document.createElement("option");
+				newOption.value = pair[0];
+				newOption.innerHTML = pair[1];
+				s2.options.add(newOption);
+			}
+		}
+		function populateCourse(s1, s2) {
+			var s1 = document.getElementById(s1);
+			var s2 = document.getElementById(s2);
+
+			const feeType = document.getElementById('feeType').value;
+			s2.innerHTML = "";
+			if (feeType == "Exam Fee" && s1.value == "INDIAN" || s1.value == "FOREIGN" || s1.value == "NRI" || s1.value == "SAARC") {
+				var optionArray = ["|", "ALL_COURSES|ALL_COURSES"];
+			} else if (s1.value == "INDIAN" && feeType == "Application Fee") {
+				var optionArray = ["|", "ALL_COURSES|ALL_COURSES"];
+			} else if (s1.value == "FOREIGN" && feeType == "Application Fee") {
+				var optionArray = ["|", "ALL_COURSES|ALL_COURSES"];
+			}
+			for (var option in optionArray) {
+				var pair = optionArray[option].split("|");
+				var newOption = document.createElement("option");
+				newOption.value = pair[0];
+				newOption.innerHTML = pair[1];
+				s2.options.add(newOption);
+			}
+		}
+
+		function populateLevel(s1, s2) {
+			var s1 = document.getElementById(s1);
+			var s2 = document.getElementById(s2);
+
+			const feeType = document.getElementById('feeType').value;
+			const nationality = document.getElementById('nationality').value;
+			const course = document.getElementById('course').value;
+			s2.innerHTML = "";
+			if (feeType == "Application Fee" && nationality == "FOREIGN" && course == "ALL_COURSES") {
+				var optionArray = ["|", "UG|UG", "UG-DIPLOMA|UG-DIPLOMA", "PG|PG"];
+			}else if (feeType == "Exam Fee" && course == "ALL_COURSES" && nationality == "INDIAN" || nationality == "FOREIGN" || nationality == "NRI" || nationality == "SAARC") {
+				var optionArray = ["|", "ALL_LEVEL|ALL_LEVEL"];
+			} else if (feeType == "Application Fee" && nationality == "INDIAN" && course == "ALL_COURSES") {
+				var optionArray = ["|", "UG|UG", "UG-DIPLOMA|UG-DIPLOMA", "PG|PG"];
+			}
+			for (var option in optionArray) {
+				var pair = optionArray[option].split("|");
+				var newOption = document.createElement("option");
+				newOption.value = pair[0];
+				newOption.innerHTML = pair[1];
+				s2.options.add(newOption);
+			}
+		}
+
+	</script>
+	<style>
+		.dndbox {
+			width: 300px;
+			height: 300px;
+			border: 2px solid black;
+			margin: auto;
+			padding: 10px;
+			background-color: #9DBCF7;
+		}
+
+		.button {
+			background-color: #1D4DA9;
+			border: none;
+			color: white;
+			padding: 4px 15px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!--<script src="constants.js"></script>-->
+	<script src="common.js"></script>
+	<div class="dndbox">
+		<h2 s>:Fees Details:</h2>
+
+
+		<label for="feeType">Fee Type:</label>
+		<select id="feeType" name="feeType" onchange="populateNationality(this.id, 'nationality')">
+			<option value=""></option>
+			<option value="Exam Fee">Exam Fee</option>
+			<option value="Application Fee">Application Fee</option>
+		</select>
+		<br><br>
+		<label for="nationality">Nationality:</label>
+		<select id="nationality" name="nationality" onchange="populateCourse(this.id, 'course')"></select>
+
+		<br><br>
+		<label for="course">Course:</label>
+		<select id="course" name="course" onchange="populateLevel(this.id, 'level')"></select>
+
+		<br><br>
+
+		<label for="level">Level:</label>
+		<select id="level" name="level"></select>
+
+		<br><br>
+		<button type="button" class="button" onclick="calculateFee()">Calculate Fee</button>
+		<p id="result-message"></p>
+	</div>
+</body>
+
+</html>
