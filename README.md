@@ -1,6 +1,6 @@
 # feeCalculator
 #Objective
-  Creating a java spring boot application for detarmining the accurate fee to be paid in the university.
+  Creating a java spring boot application for determining the accurate fee to be paid in the university.
 
 #Technology used
   FrontEnd Development
@@ -18,7 +18,7 @@
 # Tools required to run Application
   1. Java JDK 17 or Above
   2. Use IntelliJ or eclipse IDE to Clone
-  3. Use Chrome/Firefox/Microsoft Edge to launch applicatioin
+  3. Use Chrome/Firefox/Microsoft Edge to launch application
 
  # Steps to setup and run application
  
@@ -28,6 +28,6 @@
   
   3. After successfully running the project lauch the /src/main/java/htmlPage/FeeCalculator.html  file on browser.
   
-  4. In Browser select the appropriate options from a given form and hit on Calculate Fee button, after that will recieve the fee details for the selected option. 
+  4. In Browser select the appropriate options from a given form and hit on Calculate Fee button, after that will receive the fee details for the selected option. 
  
   
